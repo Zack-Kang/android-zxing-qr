@@ -7,3 +7,6 @@
 .idea/modules.xml
 .idea/workspace.xml
 build/
+libs/
+src/main/java/com/zack/qr/android/camera/
+src/main/java/com/zack/qr/android/encode/
