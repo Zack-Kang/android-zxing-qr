@@ -1,14 +1,22 @@
+general:
+  branches:
+    only:
+      - master
+  artifacts:
+  - "app/build/outputs/apk/app-release-unsigned.apk"
+machine:
+  java:
+    version: oraclejdk8
+  environment:
+    ANDROID_HOME: /usr/local/android-sdk-linux
+dependencies:
+  override:
+    - echo y | android update sdk --no-ui --filter "android-25,build-tools-25.0.0"
 test:
   override:
-    # start the emulator
-    - emulator -avd circleci-android22 -no-audio -no-window:
-        background: true
-        parallel: true
-    # wait for it to have booted
-    - circle-android wait-for-boot
-    # run tests  against the emulator.
-    - ./gradlew assembleDebug
-    # copy the build outputs to artifacts
-    #  - cp -r my-project/build/outputs $CIRCLE_ARTIFACTS
-    # copy the test results to the test results directory.
-    # - cp -r my-project/build/outputs/androidTest-results/* $CIRCLE_TEST_REPORTS
+    - echo "Nothing to do here"
+#deployment:
+#  master:
+#    branch: master
+#    commands:
+#      - ./deploy.sh
