@@ -1,26 +1,22 @@
-language: android        # 声明构建语言环境
-jdk: oraclejdk8          # 下载jdk8
-
-sudo: false              # 开启基于容器的Travis CI任务，让编译效率更高。
-
+language: android
+jdk: oraclejdk8
+sudo: false
 android:
-  components:            # 配置信息
-    - platform-tools
-    - tools
-  # The BuildTools version used by your project
-    - build-tools-25.0.0
-  # The SDK version used to compile your project
-  # - android-22
-    - android-25
-  # Additional components
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - addon-google_apis-google-21
-    - extra-android-m2repository     # Android Support Repository
-    - extra-android-support          # Support Library
-  # - sys-img-armeabi-v7a-android-22
-  # - extra-android-m2repository
-
-
+  components:
+  - platform-tools
+  - tools
+  - build-tools-25.0.0
+  - android-25
+  - extra-google-google_play_services
+  - extra-google-m2repository
+  - addon-google_apis-google-21
+  - extra-android-m2repository
+  - extra-android-support
+before_install:
+  openssl aes-256-cbc -K $encrypted_93528e075eef_key -iv $encrypted_93528e075eef_iv -in zing-qr-keystore.jks.enc -out zing-qr-keystore.jks -d
 script:
-    - ./gradlew assemble
+- "./gradlew assemble"
+env:
+  global:
+  - secure: aWNb7F9SxiWPjena4QEAqVVz8UK5OjGxnAwxvBg4tXCRbrfyll+j8NCJsITm2fpnmB5O0P24/Y9+OgPi4yDVEMKsxFnRhzThgZceXDjmr5Txhx0mfJFr5p5gmFf5TB0QBtqWa1iyaI3YLK5dftodI+c5PhxlB+5cbFUfcrzxJJiwPbPwTAD6/5N5Ix+KpD8r17pk9W5UZKGDBdQKlajOq4bbThrm6oPt8u1mQ0st+YIdmDGnyvsGAscHwPdr9ukD+biHZW8iXTteCrXDqoVGaoTyXzB3fV8vaxJrb40TeuUHUOgduQ667MjlfrtwJUbM7aC3/5NS1fJDxfi4b52BMvaZ47YGcfThg8gzXI4UUaQaNX0nrtwD4bU0tVyRoYbak263JhnmOwH2YtISkG6u2pFqBmnfZpM4mF5ZN7dQXbylz3hxfIpbbvmHCyPbN6hlmefonqTKWx/oProjJLV4t8I2PBt1IvwTYZo7hX9O68zwuMJ4OegiupJQGz20eOkJAhh8jIgP8RLE0a4CdkXfrWxeFZjhU3EgqhUMl74BW+hebPU2rsW0HnWp4Yd9NxD6t8qqLTdT6+idUhh1fblPA2iRNSV8dJ2sg40HVNR0g1HN6pmU2N8aZFDI8gOiIIV9Q9VvXi9fBauJPEFgWR3yCUXofokmZm6krqKZ0Av/5B8=
+  - secure: k/LUX550KvULXq38bpq/QkRnaUL1zCGlMYA6EIaT0feFGm3jnG0q8l+gJoHj70kZ94U9ohMVyhoQYh3S8Pz4vSyJKF197l6O1lTBCT0w4PuxjAtvJgCSuuc0uFF1GN4t78dSF/gZ3FDG/Nr7+6ODanGWEvRqfaOTkVQ572ubR3fc6iy40sGYCR3cJdy34n4CVZ9cubnDROVsDwOdoAgRxOQ1iuD+b3NrZlrLFzKKM4qNAHpuUxIBvDcx+RilaqNe1D288M1DmVEUyxo0OVKlbZ+/gduP5zR83Opvlm8BiSbCqLySh9KtmaqjkyUwOdVpx1reiQLNmTFHUbo+0tMhDU1Vi+W/Kf/f0lpTOEknHCbPib6WWrDwm0P5ezujVrpYvo8YosjiCmClzQMMMg9kyZtyAY38ujvcMRES2+uiLWcO8aQ39uOpJ8CbalaGrlFZjPeDo7ZFB8HMjuFnf0N1EK+nXaOYpGV4Oql0rF+KKDKbctvowAiR0aJtqjsWy4xKq2SQFTMcYVwL4NaKXBDc+zQrIoS0fxSd3Jj44JCPCcm4vXXMscwndhzQgTwE7Uh+R1ILcIZy1MABrG0Uqm8JUiOm/JkafTfP6NrhQwFKHJOsjuV6b0agy9npXzJC6nxx0ug3ohrFSfybOW8QII7rQiXx+G7cyhVSpFEJRbh/YkQ=
